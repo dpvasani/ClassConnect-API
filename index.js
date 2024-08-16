@@ -17,9 +17,9 @@ connectDB();
 
 
 
-const teacherRoutes = require('./routes/teacherRoutes');
-const classroomRoutes = require('./routes/classroomRoutes');
-const studentRoutes = require('./routes/studentRoutes');
+const teacherRoutes = require('./src/routes/teacherRoutes');
+const classroomRoutes = require('./src/routes/classroomRoutes');
+const studentRoutes = require('./src/routes/studentRoutes');
 
 const app = express();
 
