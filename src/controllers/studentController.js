@@ -1,43 +1,22 @@
-import Classroom from "../models/Classroom.js";
-import Task from "../models/Task.js";
 
-export const viewClassrooms = async (req, res) => {
+const Classroom = require('../models/Classroom');
+
+exports.viewClassrooms = async (req, res) => {
   try {
-    const classrooms = await Classroom.find({ students: req.params.studentId });
-    res.status(200).json(classrooms);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-export const viewTasks = async (req, res) => {
-  try {
-    const tasks = await Task.find({ classroomId: req.params.classroomId });
-    res.status(200).json(tasks);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-export const submitTask = async (req, res) => {
-  try {
-    const task = await Task.findById(req.params.taskId);
-    const submission = task.submissions.find(
-      (sub) => sub.studentId.toString() === req.params.studentId
-    );
-
-    if (!submission || submission.status === "pending") {
-      task.submissions.push({
-        studentId: req.params.studentId,
-        status: "submitted",
-        submissionDate: new Date(),
-      });
-      await task.save();
-      res.status(200).json({ message: "Task submitted successfully." });
-    } else {
-      res.status(400).json({ message: "Task already submitted." });
+    const { studentId } = req.params;
+    // Fetch classrooms for the student (implementation depends on your schema)
+    // Assuming you have a `Student` model and classrooms are referenced there
+    const student = await Student.findById(studentId).populate('classrooms');
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
     }
+
+    const classrooms = student.classrooms.map(c => ({
+      classroomId: c._id,
+      classroomName: c.name,
+    }));
+    res.json(classrooms);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
