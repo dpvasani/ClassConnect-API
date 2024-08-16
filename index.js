@@ -3,7 +3,6 @@
 import dotenv from "dotenv";
 import connectDB from "./src/db/dbconnect.js";
 const express = require('express');
-const connectDB = require('./db/dbConnection'); // Ensure the path is correct
 require('dotenv').config();
 
 dotenv.config(
@@ -22,9 +21,6 @@ const classroomRoutes = require('./src/routes/classroomRoutes');
 const studentRoutes = require('./src/routes/studentRoutes');
 
 const app = express();
-
-connectDB();
-
 app.use(express.json());
 
 app.use('/api/teachers', teacherRoutes);
