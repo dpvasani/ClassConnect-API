@@ -1,6 +1,3 @@
-Here's a README template for your `ClassConnect` project. This template covers the essential aspects of the project, including setup, usage, and structure. You can modify it according to your specific needs and details.
-
----
 
 # ClassConnect
 
