@@ -3,6 +3,8 @@
 
 ClassConnect is a RESTful API for managing classrooms, teachers, and tasks in an educational environment. This project provides endpoints for creating and managing classrooms, assigning tasks, and viewing task submissions.
 
+### Note : I Have Included .env File For Your reference Otherwise It Best Practice Is Not To Add .env File While Uploading Code In Github And In Production Version Too.
+
 ## Table of Contents
 
 - [Installation](#installation)
