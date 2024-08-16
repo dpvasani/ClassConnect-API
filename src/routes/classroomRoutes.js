@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express';
+import { addStudent, removeStudent } from '../controllers/classroomController.js'; // Adjust path if needed
+
 const router = express.Router();
-const classroomController = require('../controllers/classroomController'); // Ensure the path is correct
 
-router.post('/:classroomId/students', classroomController.addStudent);
-router.delete('/:classroomId/students/:studentId', classroomController.removeStudent);
+router.post('/:classroomId/students', addStudent);
+router.delete('/:classroomId/students/:studentId', removeStudent);
 
-module.exports = router;
+export default router;

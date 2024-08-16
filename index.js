@@ -2,26 +2,24 @@
 // require('dotenv').config({path:'./env'})
 import dotenv from "dotenv";
 import connectDB from "./src/db/dbconnect.js";
-const express = require('express');
-require('dotenv').config();
+import express from 'express';
+const app = express();
+app.use(express.json());
+// require('dotenv').config();
 
 dotenv.config(
     { 
-        path: "./env" 
+        path: "./.env" 
     }
 );
 
 connectDB();
 
 
-
-
 const teacherRoutes = require('./src/routes/teacherRoutes');
 const classroomRoutes = require('./src/routes/classroomRoutes');
 const studentRoutes = require('./src/routes/studentRoutes');
 
-const app = express();
-app.use(express.json());
 
 app.use('/api/teachers', teacherRoutes);
 app.use('/api/classrooms', classroomRoutes);
