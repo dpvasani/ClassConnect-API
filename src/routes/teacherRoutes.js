@@ -1,12 +1,20 @@
-const express = require('express');
+import express from "express";
+import {
+  createClassroom,
+  viewClassrooms,
+  editClassroom,
+  deleteClassroom,
+  assignTask,
+  viewTaskSubmissions,
+} from "../controllers/teacherController.js"; // Ensure the path is correct
+
 const router = express.Router();
-const teacherController = require('../controllers/teacherController'); // Ensure the path is correct
 
-router.post('/:teacherId/classrooms', teacherController.createClassroom);
-router.get('/:teacherId/classrooms', teacherController.viewClassrooms);
-router.put('/classrooms/:classroomId', teacherController.editClassroom);
-router.delete('/classrooms/:classroomId', teacherController.deleteClassroom);
-router.post('/classrooms/:classroomId/tasks', teacherController.assignTask);
-router.get('/tasks/:taskId/submissions', teacherController.viewTaskSubmissions);
+router.post("/:teacherId/classrooms", createClassroom);
+router.get("/:teacherId/classrooms", viewClassrooms);
+router.put("/classrooms/:classroomId", editClassroom);
+router.delete("/classrooms/:classroomId", deleteClassroom);
+router.post("/classrooms/:classroomId/tasks", assignTask);
+router.get("/tasks/:taskId/submissions", viewTaskSubmissions);
 
-module.exports = router;
+export default router;

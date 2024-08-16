@@ -16,16 +16,16 @@ dotenv.config(
 connectDB();
 
 
-const teacherRoutes = require('./src/routes/teacherRoutes');
-const classroomRoutes = require('./src/routes/classroomRoutes');
-const studentRoutes = require('./src/routes/studentRoutes');
+import teacherRoutes from './src/routes/teacherRoutes.js';
+import classroomRoutes from './src/routes/classroomRoutes.js';
+import studentRoutes from './src/routes/studentRoutes.js';
 
 
 app.use('/api/teachers', teacherRoutes);
 app.use('/api/classrooms', classroomRoutes);
 app.use('/api/students', studentRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

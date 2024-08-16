@@ -1,9 +1,14 @@
-const express = require('express');
+import express from "express";
+import {
+  viewClassrooms,
+  viewTasks,
+  submitTask,
+} from "../controllers/studentController.js"; // Ensure the path is correct
+
 const router = express.Router();
-const studentController = require('../controllers/studentController'); // Ensure the path is correct
 
-router.get('/:studentId/classrooms', studentController.viewClassrooms);
-router.get('/classrooms/:classroomId/tasks', studentController.viewTasks);
-router.post('/tasks/:taskId/:studentId', studentController.submitTask);
+router.get("/:studentId/classrooms", viewClassrooms);
+router.get("/classrooms/:classroomId/tasks", viewTasks);
+router.post("/tasks/:taskId/:studentId", submitTask);
 
-module.exports = router;
+export default router;

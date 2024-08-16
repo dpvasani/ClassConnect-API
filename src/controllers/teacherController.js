@@ -1,8 +1,8 @@
-const Teacher = require('../models/Teacher');
-const Classroom = require('../models/Classroom');
-const Task = require('../models/Task');
+import Teacher from "../models/Teacher.js";
+import Classroom from "../models/Classroom.js";
+import Task from "../models/Task.js";
 
-exports.createClassroom = async (req, res) => {
+export const createClassroom = async (req, res) => {
   try {
     const { classroomName } = req.body;
     const newClassroom = new Classroom({
@@ -16,35 +16,43 @@ exports.createClassroom = async (req, res) => {
   }
 };
 
-exports.viewClassrooms = async (req, res) => {
+export const viewClassrooms = async (req, res) => {
   try {
-    const classrooms = await Classroom.find({ teacherId: req.params.teacherId });
+    const classrooms = await Classroom.find({
+      teacherId: req.params.teacherId,
+    });
     res.status(200).json(classrooms);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.editClassroom = async (req, res) => {
+export const editClassroom = async (req, res) => {
   try {
     const { classroomName } = req.body;
-    const updatedClassroom = await Classroom.findByIdAndUpdate(req.params.classroomId, { classroomName }, { new: true });
-    res.status(200).json({ message: 'Classroom updated successfully.', updatedClassroom });
+    const updatedClassroom = await Classroom.findByIdAndUpdate(
+      req.params.classroomId,
+      { classroomName },
+      { new: true }
+    );
+    res
+      .status(200)
+      .json({ message: "Classroom updated successfully.", updatedClassroom });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.deleteClassroom = async (req, res) => {
+export const deleteClassroom = async (req, res) => {
   try {
     await Classroom.findByIdAndDelete(req.params.classroomId);
-    res.status(200).json({ message: 'Classroom deleted successfully.' });
+    res.status(200).json({ message: "Classroom deleted successfully." });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.assignTask = async (req, res) => {
+export const assignTask = async (req, res) => {
   try {
     const { title, description, dueDate } = req.body;
     const newTask = new Task({
@@ -60,9 +68,12 @@ exports.assignTask = async (req, res) => {
   }
 };
 
-exports.viewTaskSubmissions = async (req, res) => {
+export const viewTaskSubmissions = async (req, res) => {
   try {
-    const task = await Task.findById(req.params.taskId).populate('submissions.studentId', 'name');
+    const task = await Task.findById(req.params.taskId).populate(
+      "submissions.studentId",
+      "name"
+    );
     res.status(200).json(task.submissions);
   } catch (error) {
     res.status(500).json({ error: error.message });

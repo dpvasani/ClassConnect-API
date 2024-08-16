@@ -1,6 +1,6 @@
 import express from 'express';
-import { addStudent, removeStudent } from '../controllers/classroomController.js'; // Adjust path if needed
-
+import { addStudent } from '../controllers/classroomController.js';
+import { removeStudent } from '../controllers/classroomController.js';
 const router = express.Router();
 
 router.post('/:classroomId/students', addStudent);
