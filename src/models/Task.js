@@ -1,11 +1,25 @@
-
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const TaskSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  dueDate: Date,
-  classroomId: mongoose.Schema.Types.ObjectId,
+  title: { type: String, required: true },
+  description: { type: String },
+  dueDate: { type: Date, required: true },
+  classroomId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Classroom",
+    required: true,
+  },
+  submissions: [
+    {
+      studentId: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
+      status: {
+        type: String,
+        enum: ["submitted", "pending"],
+        default: "pending",
+      },
+      submissionDate: { type: Date },
+    },
+  ],
 });
 
-module.exports = mongoose.model('Task', TaskSchema);
+export default mongoose.model("Task", TaskSchema);

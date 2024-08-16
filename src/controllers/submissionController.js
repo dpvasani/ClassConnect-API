@@ -9,7 +9,7 @@ exports.viewTaskSubmissionStatus = async (req, res) => {
     // Fetch all submissions for the task
     const submissions = await Submission.find({ taskId }).populate('studentId');
     const status = submissions.map(submission => ({
-      studentId: submission.studentId._id,
+      studentId: submission.studentId._id,  
       studentName: submission.studentId.name, // Assuming Student model has `name`
       status: 'submitted',
     }));
