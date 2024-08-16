@@ -17,7 +17,7 @@ ClassConnect is a RESTful API for managing classrooms, teachers, and tasks in an
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/classconnect.git
+   git clone https://github.com/dpvasani/classconnect.git
    cd classconnect
    ```
 
